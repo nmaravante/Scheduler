@@ -8,9 +8,10 @@ PUBLISH_TYPE = [
 ENTITY_TYPE = [
         ("Asset","Asset"),("Content","Content")
     ]
-class AssetsAndContent(models.Model):  
+class Assets(models.Model):  
     entity_name = models.CharField(max_length=255, blank=True, null=True)
     entity_type = models.CharField(choices=ENTITY_TYPE,max_length=32)
+    is_published = models.BooleanField(default=False)
 
     def __str__(self):
         return self.entity_name
@@ -20,4 +21,7 @@ class Scheduler(models.Model):
     entity_type = models.CharField(choices=ENTITY_TYPE,max_length=32)
     publish_status = models.CharField(max_length=100,choices=PUBLISH_TYPE)
     publish_schedule = models.DateTimeField(blank=True, null=True)
+
+    def __str__(self):
+        return self.entity_type +' : '+self.publish_status
 

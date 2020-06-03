@@ -1,0 +1,3 @@
+celery -A scheduler worker
+celery -A scheduler beat
+celery -A scheduler worker -B
